@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "react-dev": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --config ./react/webpack.config.js",
+    "react-build": "./node_modules/.bin/webpack --config ./react/webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +15,8 @@
   "dependencies": {
     "express": "^4.15.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

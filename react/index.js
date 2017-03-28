@@ -3,13 +3,14 @@
  */
 import React from 'react';
 import {render} from 'react-dom';
-
-import Hello from './components/Hello'
-import World from './components/World'
+import Timer from './components/Timer'
+import Tools from "./components/Tools";
 render(
     <div>
-        <Hello/>
-        <World/>
+        <Timer/>
+        {/*<ToolList/>*/}
+        {/*<BasicExample/>*/}
+        <Tools/>
     </div>,
     document.getElementById('app')
 );
