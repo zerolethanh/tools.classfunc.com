@@ -91,6 +91,7 @@ class Calculator extends Component {
             <div>
                 <div className="Calculator" style={{'textAlign': 'center'}}>
                     <input type="text"
+                           id="Calculator_exp"
                            value={this.state.exp}
                            onChange={this.expChange}
                            onKeyPress={this.expKeyPress}/>
