@@ -5,6 +5,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import MarkdownParse from "./Tools/MarkdownParse";
 import Calculator from './Tools/Calculator'
+import WindowWidth from './Tools/WindowWidth'
+import AjaxLoad from './Tools/AjaxLoad'
 import {
     BrowserRouter as Router,
     Route,
@@ -22,7 +24,9 @@ const Home = React.createClass({
 const components = {
     Home,
     MarkdownParse,
-    Calculator
+    Calculator,
+    WindowWidth,
+    AjaxLoad
 };
 class Tools extends Component {
 

@@ -3,13 +3,14 @@
  */
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+
 class NumberButton extends Component {
     render() {
         const val = this.props.val;
         if (val === '') {
             return <br/>;
         }
-        return <button onClick={this.props.onClick}>
+        return <button style={{fontSize: 'large', margin: 2}} onClick={this.props.onClick}>
             {val}
         </button>
     }
@@ -27,11 +28,13 @@ class Calculator extends Component {
     }
 
     createNumbersButtons() {
-        let numbers = [1, 2, 3, '+', '',
+        let numbers = [
+            1, 2, 3, '+', '',
             4, 5, 6, '-', '',
             7, 8, 9, '*', '',
             0, '(', ')', '/', '',
-            'DEL', '='].map((n, idx) => {
+            'DEL', '='
+        ].map((n, idx) => {
             return <NumberButton key={idx} val={n} onClick={this.buttonClick}/>
         });
         return <div>{numbers}</div>;
@@ -39,27 +42,34 @@ class Calculator extends Component {
 
     buttonClick(e) {
         const num = e.target.innerHTML;
-        console.log(num)
-
-        // let result = this.state.result;
-        // let exp = this.state.exp;
         let exp;
         switch (num) {
             case '=':
                 this.tryCalculateResult();
                 break;
             case 'DEL':
+                this.Calculator_exp.focus();
                 exp = this.state.exp.slice(0, -1);
                 this.setState({exp});
-                this.tryCalculateResult();
+                // this.tryCalculateResult();
                 break;
             default:
+                this.Calculator_exp.focus();
                 exp = this.state.exp + num;
                 this.setState({exp});
-                this.tryCalculateResult();
-
+                // this.tryCalculateResult();
         }
     }
+
+    componentDidMount() {
+        console.log('componentDidMount')
+        this.setState({
+            exp: this.state.exp,
+        }, () => {
+            this.tryCalculateResult();
+        })
+    }
+
 
     tryCalculateResult() {
         this.setState((prevState) => {
@@ -89,14 +99,23 @@ class Calculator extends Component {
     render() {
         return (
             <div>
-                <div className="Calculator" style={{'textAlign': 'center'}}>
+                <div className="Calculator"
+                    // style={{'textAlign': 'center'}}
+                >
                     <input type="text"
                            id="Calculator_exp"
+                           ref={(input) => {
+                               this.Calculator_exp = input;
+                           }}
+                           className="full-width"
+                           style={{fontSize: 'large'}}
                            value={this.state.exp}
                            onChange={this.expChange}
                            onKeyPress={this.expKeyPress}/>
                     <br/>
-                    <input type="text" style={{'border': 0}} value={this.state.result} readOnly={true}/>
+                    <input type="text" className="full-width"
+                           style={{'border': 0, fontSize: 'large', color: 'blue', width: '100%'}}
+                           value={this.state.result} readOnly={true}/>
                     {this.createNumbersButtons()}
                 </div>
             </div>
